@@ -1,4 +1,4 @@
-from config import blue_text, red_text
+from config import blue_text, green_text, red_text
 from save_to_queue import save_job
 from config import red_text, purple_text
 global EXEC
@@ -10,18 +10,18 @@ EXEC = 'exec'
 # and returns total number of jobs in the queue
 # expected waiting time
 # and scheduling policy
-def run():
-  print(purple_text('You selected the run option.'))
+def run(policy):
+  print(green_text('You selected the run option.'))
   print(blue_text('Please enter the job name: '), end='')
   job_name = input()
   exec_time = handle_sanitized_input(EXEC)
   priority = handle_sanitized_input()
-  save_job(job_name, exec_time, priority)
+  save_job(job_name, exec_time,policy, priority)
 
 
 def handle_sanitized_input(type=''):
   if(type == EXEC):
-    print(blue_text('Please enter the execution time: '), end='')
+    print(purple_text('Please enter the execution time: '), end='')
   else:
     print(blue_text('Please enter the priority: '), end='')
   try:

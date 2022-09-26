@@ -17,8 +17,11 @@ from help import help
 # when the program is run.
 def main():
   global policy
-  policy = 'FCFS'
+  # we are now reading policy in from policy.txt
 
+  with open('policy.txt', 'r') as f:
+    policy = f.read()
+ 
   while True:
     print()
     print(purple_text('Welcome to the scheduling module.'))
@@ -30,16 +33,17 @@ def main():
     print(blue_text('5. Exit'))
     print()
     print(purple_text('Please enter your choice: '), end='')
+    print(normal_text(''))
 
     choice = input()
     if choice == '1':
       help()
     elif choice == '2':
-      run()
+      run(policy)
     elif choice == '3':
-      list_jobs()
+      list_jobs(policy)
     elif choice == '4':
-      change()
+      change(policy)
     elif choice == '5':
       exit()
     else:
