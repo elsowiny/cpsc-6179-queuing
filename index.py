@@ -1,14 +1,9 @@
 import sys
-import os
-import time
-import random
-import csv
 from list_jobs import list_jobs
 
 from policy_change import change
 from run_job import run
-from save_to_queue import save_job
-from config import normal_text, yellow_text, blue_text, white_text, red_text,purple_text
+from config import normal_text, blue_text, white_text, red_text,purple_text, policy_file_name
 from help import help
 
 
@@ -18,8 +13,7 @@ from help import help
 def main():
   global policy
   # we are now reading policy in from policy.txt
-
-  with open('policy.txt', 'r') as f:
+  with open(policy_file_name, 'r') as f:
     policy = f.read()
  
   while True:
@@ -43,7 +37,7 @@ def main():
     elif choice == '3':
       list_jobs(policy)
     elif choice == '4':
-      change(policy)
+      change()
     elif choice == '5':
       exit()
     else:

@@ -1,7 +1,9 @@
-from email.policy import default
-
-
 file_name = 'jobs.csv'
+policy_file_name = 'policy.txt'
+FCFS = 'FCFS'
+PRI = 'PRI'
+SJF = "SJF"
+
 yellow = '\033[1;33m'
 blue = '\033[94m'
 white = '\033[97m'

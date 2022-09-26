@@ -1,5 +1,5 @@
 import csv
-from config import file_name, normal_text, purple_text, red_text,green_text
+from config import file_name, normal_text, red_text
 # This function will be called when the user
 # selects the list option.
 def list_jobs(policy):

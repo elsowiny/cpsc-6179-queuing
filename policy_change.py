@@ -1,34 +1,34 @@
+from cmath import inf
 import csv
-from config import file_name, normal_text, red_text
+from config import file_name, normal_text, red_text, policy_file_name, FCFS, PRI, SJF
 
-def change(policy):
+def change():
   print('You selected the change option.')
   print('Please enter the new scheduling policy: ', end='')
   new_policy = input()
-  new_policy = new_policy.upper()
-  # needs to be a valid policy
-  if new_policy == 'FCFS' or new_policy == 'SJF' or new_policy == 'PRI':
-    policy = new_policy
-    handle_policy_change(policy)
+  new_policy = new_policy.upper() # needs to be a valid policy
+  if new_policy == FCFS or new_policy == SJF or new_policy == PRI:
+    handle_policy_change(new_policy)
   elif new_policy == '':
-    print('Policy is ',  policy)
-    return
+     with open(policy_file_name, 'r') as file:
+      curr_policy = file.read()
+      print('Policy is ', curr_policy)  
+      return
   else:
     print('Invalid scheduling policy. Please try again.')
-    change(policy)
+    change()
 
 
 def handle_policy_change(policy):
   print('The new scheduling policy is: ' + policy)
   print()
-  # save over policy.txt
-  with open('policy.txt', 'w') as file:
+  with open(policy_file_name, 'w') as file:
     file.write(policy)
-  if(policy == 'FCFS'):
+  if(policy == FCFS):
     fcfs()
-  elif(policy == 'SJF'):
+  elif(policy == SJF):
     sjf()
-  elif(policy == 'PRI'):
+  elif(policy == PRI):
     pri()
 
 def fcfs():
@@ -118,7 +118,9 @@ def pri():
     # we need to convert the priority to an integer
     # so we can sort it
 
-    queue = sorted(queue, key=lambda x: (x[2] == '', x[2]))
+    queue = sorted(queue, key=lambda x: int(x[2]) if x[2] != '' else inf)
+
+    # queue = sorted(queue, key=lambda x: (x[2] == '', x[2]))
     # print the queue
     print('Job name, Execution time, Priority, Submitted time')
     for job in queue:
