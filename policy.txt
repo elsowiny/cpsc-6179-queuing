@@ -1,1 +1,1 @@
-FCFS
+SJF

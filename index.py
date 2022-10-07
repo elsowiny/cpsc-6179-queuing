@@ -6,15 +6,14 @@ from run_job import run
 from config import normal_text, blue_text, white_text, red_text,purple_text, policy_file_name
 from help import help
 
-
+# Job name, Execution time, Priority, Submitted time
 
 # This is the main function that will be called
 # when the program is run.
 def main():
   global policy
   # we are now reading policy in from policy.txt
-  with open(policy_file_name, 'r') as f:
-    policy = f.read()
+  
  
   while True:
     print()
@@ -33,8 +32,12 @@ def main():
     if choice == '1':
       help()
     elif choice == '2':
+      with open(policy_file_name, 'r') as f:
+        policy = f.read()
       run(policy)
     elif choice == '3':
+      with open(policy_file_name, 'r') as f:
+        policy = f.read()
       list_jobs(policy)
     elif choice == '4':
       change()
