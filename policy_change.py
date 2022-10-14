@@ -9,6 +9,10 @@ def change():
   new_policy = new_policy.upper() # needs to be a valid policy
   if new_policy == FCFS or new_policy == SJF or new_policy == PRI:
     handle_policy_change(new_policy)
+  elif new_policy == '5':
+    print('You selected the exit option.')
+    print('Exiting the scheduling module.')
+    exit()
   elif new_policy == '':
      with open(policy_file_name, 'r') as file:
       curr_policy = file.read()
