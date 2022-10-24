@@ -14,14 +14,16 @@ def list_jobs():
         jobs = stats['jobs']
         policy = stats['policy']
         expected_waiting_time = stats['expected_waiting_time']
-        jobs_len = len(jobs)
-        list_print(jobs_len, policy, expected_waiting_time)
+        list_print(jobs, policy, expected_waiting_time)
     except:
         print('error listing jobs')
 
 
-def list_print(jobs_len, policy, expected_waiting_time):
-    print('Total number of jobs in the queue: ' + str(jobs_len))
+def list_print(jobs, policy, expected_waiting_time):
+    print('Total number of jobs in the queue: ' + str(len(jobs)))
     print('Scheduling policy: ' + policy)
     print('Expected waiting time: ' + str(expected_waiting_time))
     print('Job name, Execution time, Priority, Submitted time')
+    for job in jobs:
+        print(job[0] + ', ' + job[1] + ', ' + job[2] + ', ' + job[3])
+    print()
