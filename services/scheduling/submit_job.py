@@ -10,7 +10,7 @@ def submit_job():
     job_name = input()
     exec_time = handle_sanitized_input(exec_input=True)
     priority = handle_sanitized_input()
-    event_type = 'submit_job'
+
     #  post to event bus
     #  event bus will save job to queue
     try:

@@ -4,6 +4,8 @@ jobs_file = './shared/jobs.csv'
 policy_file_name = './shared/policy.txt'
 event_queue_file = './shared/event_queue.csv'
 CURR_JOB_CSV = './shared/current_job.csv'
+tester_file = './tester/tester_queue.csv'
+
 FCFS = 'FCFS'
 PRI = 'PRI'
 SJF = "SJF"
@@ -15,6 +17,7 @@ SUBMIT_JOB_API = baseApi + '/submit_job'
 SUBMIT_EVENT_API = baseApi + '/submit_event'
 CHANGE_POLICY_API = baseApi + '/change_policy'
 GET_JOBS_API = baseApi + '/jobs'
+PERFORMANCE_API = baseApi + '/performance'
 
 
 yellow = '\033[1;33m'

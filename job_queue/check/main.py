@@ -2,12 +2,14 @@ import csv
 import threading
 import time
 from config.config import CURR_JOB_CSV, jobs_file
+from job_queue.performance.main import log_performance, start_performance
 from job_queue.processor import clean_job_queue,  retrieve_single_job
 
 
 def start_job_queue(jobs_lock, policy_lock):
     thread = threading.Thread(target=check_job_queue,
                               args=(jobs_lock, policy_lock), daemon=True)
+    start_performance()
     thread.start()
 
 
@@ -64,6 +66,7 @@ def get_queue_length():
 def process_job(job, queue_length):
     exec_time = job[1]
     job_name = job[0]
+    time_submitted = job[3]
     # delete and write to current_job.csv
     with open(CURR_JOB_CSV, 'w') as csvfile:
         writer = csv.writer(csvfile, lineterminator='\n')
@@ -76,3 +79,5 @@ def process_job(job, queue_length):
         str3 = 'Jobs left: ' + str(queue_length)
         print(str1 + ' -- ' + str2 + ' --- ' + str3)
         time.sleep(1)
+
+    log_performance(time_submitted, exec_time)

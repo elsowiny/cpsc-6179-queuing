@@ -1,17 +1,11 @@
-import csv
-import pathlib
-import sys
 import threading
-import time
 from fastapi import FastAPI
-from config.config import SUBMIT_JOB, jobs_file, event_queue_file
-from pathlib import Path
 from job_queue.check.main import start_job_queue
+from job_queue.performance.main import get_performance
 from server.controllers.change_policy.main import change_policy_handler
 from server.controllers.get_jobs.main import get_jobs
 from server.controllers.stats.index import get_stats
 from server.controllers.submit_job.index import save_job
-import uvicorn
 
 app = FastAPI()
 
@@ -53,11 +47,9 @@ async def jobs():
 async def stats():
     return get_stats()
 
-
-# @app.get("/stats/list")
-# async def stats_list():
-#     stats = get_stats()
-#     jobs = get_jobs()
+@app.get("/performance")
+async def performance():
+    return get_performance()
 
 
 @app.get("/health")

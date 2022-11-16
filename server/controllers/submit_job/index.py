@@ -5,6 +5,8 @@ from config.config import jobs_file
 
 import json
 
+from job_queue.performance.main import tally_total_submitted_jobs
+
 
 async def save_job(data, jobs_lock):
     print('Saving job', data['job_name'])
@@ -31,6 +33,7 @@ async def save_job(data, jobs_lock):
                     for row in reader:
                         expected_wait_time += int(row[1])
                     csvfile.close()
+                tally_total_submitted_jobs()
                 return {'msg': 'job submitted', 'job_name': job_name, 'exec_time': exec_time, 'priority': priority, 'submitted_time': submitted_time, 'expected_wait_time': expected_wait_time}
 
     except Exception as e:

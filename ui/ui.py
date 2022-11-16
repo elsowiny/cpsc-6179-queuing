@@ -2,6 +2,10 @@ import sys
 import threading
 
 from config.config import normal_text, blue_text, white_text, red_text, purple_text, policy_file_name
+from job_queue.performance.main import get_performance as get_performance_from_queue
+from services.scheduling.benchmark_test import testing_prompt
+from services.scheduling.get_performance import get_performance
+
 from services.scheduling.submit_job import submit_job
 from services.scheduling.list_jobs import list_jobs
 from services.scheduling.policy_change import change_policy
@@ -26,6 +30,12 @@ def ui():
             change_policy()
         elif choice == '5':
             exit()
+        elif choice == '6':
+            get_performance()
+        elif choice == '7':
+            testing_prompt()
+        elif choice == '8':
+            sys.exit()
         else:
             print(red_text('Invalid choice. Please try again.'))
             print()
@@ -35,6 +45,7 @@ def exit():
     print(red_text('You selected the exit option.'))
     print(red_text('Exiting the scheduling module.'))
     print(normal_text(''))
+    get_performance()
 
     sys.exit()
 
@@ -48,6 +59,8 @@ def intro_text():
     print(blue_text('3. List jobs'))
     print(white_text('4. Change policy'))
     print(blue_text('5. Exit'))
+    print(white_text('6. Get performance'))
+    print(blue_text('7. Run benchmark test'))
     print()
     print(purple_text('Please enter your choice: '), end='')
     print(normal_text(''))

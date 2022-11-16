@@ -1,20 +1,20 @@
 from cmath import inf
 import csv
-from config.config import jobs_file, normal_text, red_text, policy_file_name, FCFS, PRI, SJF
+from config.config import jobs_file as jf, FCFS, PRI, SJF
 
 
 def re_organize(policy, jobs_lock):
     with jobs_lock:
         print('re-organizing the jobs, acquired lock')
         if(policy == FCFS):
-            return fcfs()
+            return fcfs(jf)
         elif(policy == SJF):
-            return sjf()
+            return sjf(jf)
         elif(policy == PRI):
-            return pri()
+            return pri(jf)
 
 
-def fcfs():
+def fcfs(jobs_file):
     queue = []
     try:
         with open(jobs_file, 'r') as csvfile:
@@ -32,7 +32,7 @@ def fcfs():
         return {'result': 'error', 'policy': FCFS, 'msg': 'There are no jobs in the queue.'}
 
 
-def sjf():
+def sjf(jobs_file):
     queue = []
     try:
         with open(jobs_file, 'r') as csvfile:
@@ -55,7 +55,7 @@ def sjf():
         return {'result': 'error', 'policy': SJF, 'msg': 'There are no jobs in the queue.'}
 
 
-def pri():
+def pri(jobs_file):
 
     queue = []
     try:

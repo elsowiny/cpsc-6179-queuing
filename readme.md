@@ -4,11 +4,11 @@ In order to properly run, you will need to setup your venv.
 
 #### Windows
 
-.\batchdev\Scripts\activate
+`.\batchdev\Scripts\activate`
 
 #### Unix/MacOS
 
-source ./batchdev/bin/activate
+`source ./batchdev/bin/activate`
 
 ### You will now then need to download the required packages
 
