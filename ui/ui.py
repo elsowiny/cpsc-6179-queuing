@@ -74,6 +74,8 @@ def help():
     print(purple_text('Submit: Add jobs to the scheduling queue\n'))
     print(purple_text('List: List all jobs in the Job Queue that are scheduled to run\n'))
     print(purple_text('Change: Change Policy all objects in the Queue'))
+    print(purple_text('Performance: Produce the performace evaluation of a job'))
+    print(purple_text('Benchmark: Runs a benchmark test <name_of_benchmark> <policy> <num_of_jobs> <priority_levels> <minimum_CPU_time> <maximum_CPU_time> '))
     print()
     print(purple_text('fcfs: change the scheduling policy to FCFS\n'))
     print(purple_text('sjf: change the scheduling policy to SJF\n'))
